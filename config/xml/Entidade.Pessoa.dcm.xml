@@ -1,0 +1,15 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Entidade\Pessoa" table="pessoa">
+        <id name="cdPessoa" type="integer" column="cd_pessoa">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="dsNome" type="string" column="ds_nome" length="255"/>
+        <field name="dsLogin" type="string" column="ds_login" length="255"/>
+        <field name="dsSenha" type="string" column="ds_senha" length="255"/>
+    </entity>
+
+</doctrine-mapping>
