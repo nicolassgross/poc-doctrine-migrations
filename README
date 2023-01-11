@@ -1,10 +1,14 @@
 O projeto consiste em utilizar o Doctrine puro e montar uma estrutura de conexão e uso do EntityManager. Tendo o Doctrine configurado para mapear a entidade pelo XML, juntamente com a conexão do banco de dados MYSQL funcional, temos um CRUD de Pessoa.
 
+**Para utilizar os comandos do Doctrine é necessário inserir o prefixo "php bin/doctrine.php", pois foi onde fiz a configuração do ConsoleRunner.
+
 **Utilizei o comando orm:generate-entities para gerar a entidade com base no arquivo XML.
 
 **Validei o Schema com o comando orm:validate-schema.
 
 **Gerei a tabela no banco com o comando orm:schema-tool:create.
+
+**Utilizei o comando dbal:run-sql para executar simples consultas durante o desenvolvimento, por exemplo 'php bin/doctrine.php dbal:run-sql "SELECT count(*) FROM pessoa"'
 
 No qual podemos cadastrar os seguintes campos: cd_pessoa, ds_nome, ds_login, ds_senha.
 
