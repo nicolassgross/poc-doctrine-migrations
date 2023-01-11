@@ -11,16 +11,10 @@ $objPessoaRepository = new PessoaRepository($entityManager);
 
 $id = $argv[1] ?? null;
 
-$arrDadosAtualizados = [
-    'dsNome' => $argv[2] ?? null,
-    'dsLogin' => $argv[3] ?? null,
-    'dsSenha' => $argv[4] ?? null
-];
-
-if($objPessoaRepository->update($id, $arrDadosAtualizados) === true) {
-    echo 'Dados atualizados com sucesso';
+if($objPessoaRepository->delete($id) === true) {
+    echo 'Dados removidos com sucesso';
 } else {
-    echo 'Erro';
+    echo 'Erro ao remover seus dados, talvez o ID informado não exista no banco de dados, por favor tente novamente.';
 };
 
 

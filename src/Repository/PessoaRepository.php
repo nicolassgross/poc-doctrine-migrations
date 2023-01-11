@@ -9,10 +9,12 @@ use Entidade\Pessoa;
 
 class PessoaRepository
 {
+    private $objPessoaRepository;
     private $entityManager;
 
     public function __construct(EntityManager $entityManager)
     {
+        $this->objPessoaRepository = $entityManager->getRepository(Pessoa::class);
         $this->entityManager = $entityManager;
     }
 
@@ -24,17 +26,54 @@ class PessoaRepository
         return true;
     }
 
-    public function update()
+    public function update(
+        int $id,
+        array $arrDadosAtualizados
+    )
     {
+        $user = $this->objPessoaRepository->find($id);
+
+        if(empty($user)) {
+            return false;
+        }
+
+        //vai percorrer o array que contém os novos dados a serem atualizados, verificar o valor, criar o setter com base nas chaves do array
+        //e se o método existir na entidade Pessoa, irá setar o dado, caso contrário não irá alterar outros campos do registro.
+        foreach($arrDadosAtualizados as $key => $value) {
+            if(!empty($value)) {
+                $setter = 'set' . ucfirst($key);
+                if (method_exists($user, $setter)) {
+                    $user->{$setter}($value);
+                }
+            }
+        }
+        
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+
+        return true;
     }
 
-    public function delete(Pessoa $pessoa)
+    public function delete(int $id)
     {
-        // Exclui uma pessoa do banco de dados
+        $user = $this->objPessoaRepository->find($id);
+
+        if(empty($user)) {
+            return false;
+        } 
+
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
+
+        return true;
     }
 
-    public function findAll()
+    public function listUser(int $id = null)
     {
-        // Retorna todas as pessoas do banco de dados
+        if(empty($id)) {
+            return $this->objPessoaRepository->findAll();
+        }
+
+        return array($this->objPessoaRepository->find($id));
     }
 }

@@ -1,0 +1,38 @@
+O projeto consiste em utilizar o Doctrine puro e montar uma estrutura de conexão e uso do EntityManager. Tendo o Doctrine configurado para mapear a entidade pelo XML, juntamente com a conexão do banco de dados MYSQL funcional, temos um CRUD de Pessoa.
+
+**Utilizei o comando orm:generate-entities para gerar a entidade com base no arquivo XML.
+
+**Gerei a tabela no banco com o comando orm:schema-tool:create.
+
+No qual podemos cadastrar os seguintes campos: cd_pessoa, ds_nome, ds_login, ds_senha.
+
+Neste projeto fiz apenas tratamento de erro de forma simples e genérica, visto que o foco é a utilização do Doctrine, e entendimento do entityManager, mapeamento por XML, manipulação de dados...
+
+Passos para o funcionamento do Crud:
+
+- Ao clonar o projeto, é necessário executar "composer install"
+
+- Inserir Usuário: php .\src\Controller\InserirUsuario.php "nomeDoUsuario" "login" "senha".
+    - O método de inserção depende dos parâmetros passados
+        - O primeiro parâmetro é referente ao nome desejado para o usuário;
+        - O segundo parâmetro é referente ao login do usuário;
+        - O terceiro parâmetro é referente a senha do usuário;
+
+- Listar Usuário: php .\src\Controller\ListarUsuario.php ID.
+    - O método de listagem pode ser executado sem passar um ID de usuário
+        - Neste caso, irá listar todos os úsuarios do banco, trazer o ID, nome e login.
+    - O método de listagem pode ser executado passando um ID
+        - Neste caso, irá listar o usuário pelo com o ID coorrespondente.
+
+- Editar Usuário: php .\src\Controller\EditarUsuario.php ID "NovoNome" "NovoLogin" "NovaSenha". (É obrigatório informar o ID e 1 dos campos seguintes para poder editar)
+    - O método de edição pode ser executado passando ID de usuário e os dados que devem ser editados
+        - O primeiro parâmetro é o ID que se refere ao usuário que deseja editar;
+        - O primeiro parâmetro é referente ao novo nome para o usuário;
+        - O segundo parâmetro é referente ao novo login do usuário;
+        - O terceiro parâmetro é referente a nova senha do usuário;
+            - É possível informar apenas o ID e o nome, ou apenas o ID, nome e login, ou todos os dados.
+
+- Listar Usuário: php .\src\Controller\RemoverUsuario.php ID.
+    - O método de exclusão pode ser executado passando apenas o ID do usuário
+        - Neste caso, já sabendo o ID da pessoa que deve ser excluída, é necessário apenas informar o ID dela.
+
