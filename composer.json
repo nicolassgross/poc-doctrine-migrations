@@ -1,7 +1,8 @@
 {
     "require": {
         "doctrine/orm": "*",
-        "symfony/cache": "^5.4"
+        "symfony/cache": "^5.4",
+        "doctrine/migrations": "^3.5"
     },
     "autoload": {
         "psr-4": {

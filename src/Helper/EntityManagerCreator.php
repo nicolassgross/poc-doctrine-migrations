@@ -9,6 +9,13 @@ use Doctrine\ORM\ORMSetup;
 
 class EntityManagerCreator
 {
+    public static array $arrConexaobanco = [
+        'driver' => 'pdo_mysql',
+        'user' => 'root',
+        'password' => '',
+        'dbname' => 'doctrine',
+    ];
+
    public static function createEntityManager(): EntityManager
    {
     $config = ORMSetup::createXMLMetadataConfiguration(
@@ -16,12 +23,7 @@ class EntityManagerCreator
         true
     );
 
-    $connection = [
-        'driver' => 'pdo_mysql',
-        'user' => 'root',
-        'password' => '',
-        'dbname' => 'doctrine',
-    ];
+    $connection = self::$arrConexaobanco;
 
     return EntityManager::create($connection, $config);
    }
