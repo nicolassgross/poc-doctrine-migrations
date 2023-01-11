@@ -2,6 +2,8 @@ O projeto consiste em utilizar o Doctrine puro e montar uma estrutura de conexã
 
 **Utilizei o comando orm:generate-entities para gerar a entidade com base no arquivo XML.
 
+**Validei o Schema com o comando orm:validate-schema.
+
 **Gerei a tabela no banco com o comando orm:schema-tool:create.
 
 No qual podemos cadastrar os seguintes campos: cd_pessoa, ds_nome, ds_login, ds_senha.
